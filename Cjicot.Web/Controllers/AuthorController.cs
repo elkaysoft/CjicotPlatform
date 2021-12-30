@@ -8,5 +8,10 @@ namespace Cjicot.Web.Controllers
         {
             return View();
         }
+
+        public IActionResult UploadManuscript()
+        {
+            return View();
+        }
     }
 }

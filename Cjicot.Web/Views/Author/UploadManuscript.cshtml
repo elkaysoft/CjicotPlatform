@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewData["Title"] = "Upload Manuscript";
+    Layout = "~/Views/Shared/_authorLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+     <div class="db-breadcrumb">
+            <h4 class="breadcrumb-title">Upload Manuscript</h4>
+            <ul class="db-breadcrumb-list">
+                <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                <li>Upload Manuscript</li>
+            </ul>
+        </div>
+
+ <ul class="nav nav-tabs">
+      <li class="nav-item">
+          <span class="badge bg-success">1</span>
+        <a class="nav-link active" aria-current="page" href="#">Manuscript Info</a>
+      </li>
+      <li class="nav-item">
+          <span class="badge bg-secondary">2</span>
+        <a class="nav-link" href="#">Author Details</a>
+      </li>
+      <li class="nav-item">
+          <span class="badge bg-secondary">3</span>
+        <a class="nav-link" href="#">Upload Files</a>
+      </li>
+</ul>
+
+<!--Manuscript Div starts here-->
+<div id="manuscriptInfo"> 
+    <h4 class="heady">Step 1: Manuscript Details</h4>
+      <div class="row">
+            <div class="col-md-2">
+                <label for="journalType">Journal Type</label>
+            </div>
+        <div class="col-md-6">
+            <select class="form-control" name="journalType" id="journalType">
+                <option selected>-Choose-</option>
+                <option>Artificial Intelligence</option>
+                <option>Big Data</option>
+                <option>Cloud Technology and Infrastructure</option>
+            </select>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+            <div class="col-md-2">
+                <label for="title">Article Title</label>
+            </div>
+        <div class="col-md-6">
+            <input type="text" id="title" name="title" class="form-control"/>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+            <div class="col-md-2">
+                <label for="abstract">Abstract</label>
+            </div>
+        <div class="col-md-6">
+            <textarea id="abstract" name="abstract" rows="4" class="form-control"></textarea>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+            <div class="col-md-2">
+                <label for="keyword">Keywords</label>
+            </div>
+        <div class="col-md-6">
+            <input type="text" id="keyword" name="keyword" class="form-control"/>
+        </div>
+      </div>
+      <br />
+      <div class="row"><div class="col-md-6">
+      </div>
+       <div class="col-md-2">
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <button class="btn btn-success" id="btnNext">NEXT</button>
+      </div>
+      </div>     
+
+</div>
+<!--Manuscript Div Ends here-->
+
+<div class="authorDetails">
+    <h4 class="heady">Step 2: Author(s) Details</h4>
+    <p>Kindly provide the names, titles, and affliations of all authors of this manuscript, in the order
+        that they appear on the manuscript. You must be one of authors of the manuscript</p>
+
+    <div class="row">
+        <div class="col-md-1">
+            <label>Title</label>
+            <div class="form-group">
+                <select class="form-control">
+                    <option>Dr</option>
+                    <option>Miss</option>
+                    <option>Mr</option>
+                    <option>Mrs</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label for="givenName">Given Names</label>
+            <div class="form-group">
+                <input type="text" class="form-control" name="givenName"/>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label for="lastName">Last Name</label>
+            <div class="form-group">
+                <input type="text" class="form-control" name="lastName"/>
+            </div>
+        </div>
+        <div class="col-md-2">
+        <label for="email">Email Address</label>
+        <div class="form-group">
+            <input type="text" class="form-control" name="email"/>
+        </div>
+        </div>
+
+         <div class="col-md-2">
+        <label for="affliation">Affliation</label>
+        <div class="form-group">
+            <input type="text" class="form-control" name="affliation"/>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function(e){
+            $('#btnNext').click(function(e){
+
+            })
+        });
+    </script>
+}

@@ -1,0 +1,17 @@
+﻿#manuscriptInfo {
+    padding:15px;
+    padding-top: 20px;
+}
+
+#manuscriptInfo label {
+    font-weight: normal;
+    font-family: Cambria;
+    color: #808080;
+}
+
+.heady {
+    background-color: darkcyan;
+    padding: 10px;
+    color: #fff;
+    border-radius: 3px 4px;
+}
