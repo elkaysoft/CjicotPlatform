@@ -1,0 +1,88 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Crescent Journal of Information and Communication Technology" />
+    <meta name="author" content="Computer Science, Crescent University" />
+    <meta name="robots" content="" />
+    <title>Crescent Journal of Information and Communication Technology</title>
+
+      <!-- TYPOGRAPHY ============================================= -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/typography.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    @*<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</head>
+<body class="container">
+    <div class="wrapper">
+    <!--Header region-->
+    <nav class="container-fluid clearfix">
+        <div class="info-box">
+            <div class="info-box-left">
+                <a href="#"><i class="bi bi-question-circle"></i>&nbsp;Ask a question</a>
+                <a href="#"><i class="bi bi-envelope"></i> &nbsp;info@cjicot.com</a>
+            </div>
+             <div class="info-box-right">
+                <a href="/Home/Login">Login</a>
+                <a href="/Home/Registration">Register</a>
+            </div>
+        </div>
+        <hr />
+        
+        <div class="mainNav">
+            <div class="logoContainer">
+               <a href="/Home/Index"><img src="~/assets/images/cjicot2.png" /></a>
+            </div>
+            <div class="menu-bar">
+             <ul>
+                <li><a href="#">Journals</a></li>
+                <li><a href="#">Publish with Us</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+            </div>           
+        </div>
+    </nav>
+    <!--End Header region-->
+    <div class="introBoard">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <img src="~/assets/images/research2.webp"/>
+                <br />
+                <h3>CRESCENT JOURNAL OF INFORMATION AND COMMUNICATION TECHNOLOGY</h3>
+                <button class="btn btn-success">Explore our Journals</button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+    <div class="topJournals">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="/assets/images/our-services/pic1.jpg"/>
+            </div>
+            <div class="col-md-4">
+                <img src="/assets/images/our-services/pic2.jpg"/>
+            </div>
+            <div class="col-md-4">
+                <img src="/assets/images/our-services/pic3.jpg"/>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        Latest published journals
+    </div>
+
+    </div>
+</body>
+</html>

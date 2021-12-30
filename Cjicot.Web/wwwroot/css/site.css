@@ -1,0 +1,101 @@
+body{
+    background-color: #fff;
+}
+
+.wrapper {
+    border-left: 2px solid #ebeaeadd;
+    border-right: 2px solid #ebeaeadd;
+    padding-bottom: 2em;
+}
+
+nav {
+    background-color: #fff;
+    overflow: hidden;
+    clear: both;
+    margin-top: 2px;
+}
+.logoContainer img{
+    width: 250px;
+    height: 80px;
+    float: left;    
+}
+
+ul li{
+    list-style-type: none;
+}
+
+.info-box{
+    padding:10px;
+    margin-bottom: 10px;
+    font-family: Cambria;
+    
+}
+
+.info-box a{
+    text-decoration: none;
+    padding-right: 10px;
+    color: #696565;
+    border-right: 1px solid #c8c2c2;
+}
+
+.info-box a:last-child {
+    border: none;
+    padding-left: 5px;
+}
+
+.info-box-left {
+    float: left;
+}
+
+.info-box-right {
+    float: right;
+}
+
+.menu-bar {
+    float: left;
+    margin-top:23px;
+}
+
+.mainNav {
+
+}
+
+.menu-bar a {
+    text-decoration: none;
+    color: #696565;
+    /*font-weight: bold;*/
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.menu-bar a:hover {
+    border-bottom: 2px solid #0094ff;
+}
+
+.menu-bar ul li {
+    display: inline;
+    padding: 10px;
+    padding-left: 15px;
+}
+
+.topJournals{
+    margin-top: 40px;
+}
+.introBoard {
+    background-color: #1d1c1c;
+    padding: 20px;
+}
+.introBoard img{
+    margin-top:30px;
+}
+.introBoard h3{
+    text-align: center;
+    color: #fff;
+    margin-top: 25px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 28px;
+}
+
+.topJournals {
+    padding:10px;
+}
