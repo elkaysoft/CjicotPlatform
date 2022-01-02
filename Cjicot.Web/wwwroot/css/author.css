@@ -1,9 +1,31 @@
-﻿#manuscriptInfo {
-    padding:15px;
-    padding-top: 20px;
+﻿body{
+    padding-bottom: 2em;
+}
+
+#navigation {
+    margin-bottom: 10px;
+}
+
+#manuscriptInfo {
+    padding: 15px;
+    /*padding-top: 20px;*/
 }
 
 #manuscriptInfo label {
+    font-weight: normal;
+    font-family: Cambria;
+    color: #808080;
+}
+
+#authorDetails {
+    /*padding-top: 20px;*/
+}
+
+#DocumentUploads {
+    /*padding-top: 20px;*/
+}
+
+#DocumentUploads label {
     font-weight: normal;
     font-family: Cambria;
     color: #808080;
@@ -14,4 +36,12 @@
     padding: 10px;
     color: #fff;
     border-radius: 3px 4px;
+}
+
+#authorDetails a {
+    color: #ff0000;
+}
+
+#authorWrapper {
+    margin-bottom: 50px;
 }

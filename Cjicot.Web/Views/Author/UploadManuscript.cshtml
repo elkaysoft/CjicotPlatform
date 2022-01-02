@@ -14,7 +14,7 @@
             </ul>
         </div>
 
- <ul class="nav nav-tabs">
+ <ul class="nav nav-tabs" id="navigation">
       <li class="nav-item">
           <span class="badge bg-success">1</span>
         <a class="nav-link active" aria-current="page" href="#">Manuscript Info</a>
@@ -73,24 +73,24 @@
         </div>
       </div>
       <br />
-      <div class="row"><div class="col-md-6">
-      </div>
+      <div class="row">
+        <div class="col-md-6"></div>
        <div class="col-md-2">
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <button class="btn btn-success" id="btnNext">NEXT</button>
+           <button class="btn btn-success" id="btnShowAuthor">Next</button>
       </div>
       </div>     
-
 </div>
 <!--Manuscript Div Ends here-->
 
-<div class="authorDetails">
+<!--Author Details Div Starts here-->
+<div id="authorDetails" hidden>
     <h4 class="heady">Step 2: Author(s) Details</h4>
     <p>Kindly provide the names, titles, and affliations of all authors of this manuscript, in the order
         that they appear on the manuscript. You must be one of authors of the manuscript</p>
 
-    <div class="row">
+    <div class="row" style="border-bottom: 1px solid #e6e4e4">
         <div class="col-md-1">
             <label>Title</label>
             <div class="form-group">
@@ -102,7 +102,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <label for="givenName">Given Names</label>
             <div class="form-group">
                 <input type="text" class="form-control" name="givenName"/>
@@ -120,15 +120,82 @@
             <input type="text" class="form-control" name="email"/>
         </div>
         </div>
-
-         <div class="col-md-2">
+        <div class="col-md-2">
         <label for="affliation">Affliation</label>
         <div class="form-group">
             <input type="text" class="form-control" name="affliation"/>
         </div>
         </div>
+         <div class="col-md-3">
+        <label for="email">Country</label>
+        <div class="form-group">
+              <select class="form-control">
+                    <option>-Choose-</option>
+                    <option>Nigeria</option>
+                    <option>United Kingdom</option>
+                    <option>United States of America</option>
+                </select>
+        </div>
+        </div>
+    </div>
+    <a href="#">Add more author</a>
+    
+    <div id="authorWrapper">
+    </div>
+
+    <div class="row">
+         <div class="col-md-9"></div>
+       <div class="col-md-3">
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <button class="btn" id="btnShowManuscript">Previous</button>&nbsp;&nbsp;
+           <button class="btn btn-success" id="btnShowDocument">Next</button>
+      </div>
     </div>
 </div>
+<!--Author Details Div Ends here-->
+
+
+<!--Documents Upload Div Starts here-->
+<div id="DocumentUploads" hidden> 
+    <h4 class="heady">Step 3: Upload Files</h4>
+      <div class="row">
+            <div class="col-md-2">
+                <label for="coverLetter">Cover Letter</label>
+            </div>
+        <div class="col-md-6">
+            <input type="file" name="coverLetter"/>
+        </div>
+      </div>
+      <br />
+       <div class="row">
+            <div class="col-md-2">
+                <label for="manuscriptFile">Manuscript File</label>
+            </div>
+        <div class="col-md-6">
+            <input type="file" name="manuscriptFile"/>
+        </div>
+      </div>
+      <br />
+       <div class="row">
+            <div class="col-md-2">
+                <label for="supplementaryFile">Supplementary File</label>
+            </div>
+        <div class="col-md-6">
+            <input type="file" name="supplementaryFile"/>
+        </div>
+      </div>
+      <br />
+       <div class="row">
+         <div class="col-md-5"></div>
+       <div class="col-md-3">
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <button class="btn" id="btnPrevAuthor">Previous</button>&nbsp;&nbsp;
+           <button class="btn btn-success" id="btnSubmit">Submit</button>
+      </div>
+    </div>   
+
+</div>
+<!--Document Upload Div Ends here-->
 
 
 </div>
@@ -137,9 +204,31 @@
 {
     <script>
         $(document).ready(function(e){
-            $('#btnNext').click(function(e){
+            $('#btnShowAuthor').click(function(e){
+                e.preventDefault();
+                $('#authorDetails').removeAttr('hidden');
+                $('#manuscriptInfo').attr('hidden', 'hidden');
+            });
 
-            })
+            $('#btnShowManuscript').click(function(e){
+                e.preventDefault();
+                $('#authorDetails').attr('hidden', 'hidden');
+                $('#manuscriptInfo').removeAttr('hidden');
+            });
+
+            $('#btnShowDocument').click(function(e){
+                e.preventDefault();
+                $('#authorDetails').attr('hidden', 'hidden');
+                $('#DocumentUploads').removeAttr('hidden');
+            });
+
+            $('#btnPrevAuthor').click(function(e){
+                e.preventDefault();
+                $('#authorDetails').removeAttr('hidden');
+                $('#DocumentUploads').attr('hidden', 'hidden');
+            });
+
+
         });
     </script>
 }

@@ -13,5 +13,10 @@ namespace Cjicot.Web.Controllers
         {
             return View();
         }
+
+        public IActionResult MyManuscripts()
+        {
+            return View();
+        }
     }
 }
