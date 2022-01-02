@@ -13,7 +13,7 @@ namespace Cjicot.Persistence.Domain
         public Int64 Id { get; set; }
         public Int64 UserId { get; set; }
         public int RoleId { get; set; }
-        public string? CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
     }
 }
