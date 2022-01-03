@@ -6,8 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Manager\" />
-    <Folder Include="DTO\" />
+    <ProjectReference Include="..\Cjicot.Persistence\Cjicot.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
