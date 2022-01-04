@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -24,5 +25,18 @@ namespace Cjicot.Presentation.Utility
                 return sb.ToString();
             }
         }
+
+        public static string ResolveFluentValidationErrorToStr(List<ValidationFailure> validationResult)
+        {
+            string result = "";
+
+            if (validationResult.Any())
+            {
+                result = string.Join(',', validationResult);
+            }
+
+            return result;
+        }
+
     }
 }

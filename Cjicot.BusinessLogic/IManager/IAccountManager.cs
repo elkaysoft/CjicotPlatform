@@ -10,5 +10,7 @@ namespace Cjicot.Presentation.IManager
     public interface IAccountManager
     {
         AccountDto AppLogin(LoginDto login);
+        bool IsUserExists(string username);
+        int RegisterAuthor(RegistrationDto registration);
     }
 }
