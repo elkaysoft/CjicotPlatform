@@ -15,7 +15,7 @@ namespace Cjicot.Web.Controllers.Api
             _accountManager = accountManager;
         }
 
-        public IActionResult AuthorRegisteration(RegistrationDto payload)
+        public IActionResult AuthorRegistration(RegistrationDto payload)
         {
             var result = new ApiResult
             {
