@@ -59,12 +59,15 @@ namespace Cjicot.Web.Controllers.Api
                     result.message = helper.ResolveFluentValidationErrorToStr(validationResult.Errors);
                     return BadRequest(result);
                 }
+                
             }
             catch(Exception ex)
             {
                 ex.ToString();
                 HandleError(ex, ResponseHub.RESPONSEMESSAGE99);
             }
+
+            return BadRequest(result);
         }
     }
 }
