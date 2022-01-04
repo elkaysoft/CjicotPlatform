@@ -51,9 +51,39 @@ namespace Cjicot.Presentation.Manager
             return result;
         }
 
-        public int RegisterUser()
+        public int RegisterAuthor(RegistrationDto registration)
         {
-            return 0;
+            var registerationModel = new UserLogin
+            {
+                AppUserId = Guid.NewGuid(),
+                DateCreated = DateTime.Now,
+                IsActive = true,
+                Email = registration.Email,
+                FailedLoginCount = 0,
+                MobileNumber = registration.MobileNumber,
+                FullName = registration.FullName,
+                IsLocked = false,
+                Password = registration.Password,
+                Username = registration.Username                               
+            };
+
+            return _loginRepository.Insert(registerationModel);
+        }
+
+        public bool IsUserExists(string username)
+        {
+            bool result = false;
+
+            if (!string.IsNullOrEmpty(username))
+            {
+                var accountObj = _loginRepository.GetFirstOrDefault(x => x.Username.Equals(username));
+                if (accountObj != null)
+                {
+                    result = true;
+                }
+            }
+
+            return result;
         }
 
     }

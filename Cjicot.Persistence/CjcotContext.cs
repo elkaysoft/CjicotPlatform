@@ -23,5 +23,15 @@ namespace Cjicot.Persistence
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
 
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserLogin>()
+                .HasOne(b => b.UserRole)
+                .WithOne(i => i.UserLogin)
+                .HasForeignKey<UserRole>(b => b.UserId);
+        }
+
     }
 }
