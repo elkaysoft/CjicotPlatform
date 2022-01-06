@@ -6,6 +6,7 @@ namespace Cjicot.Tests
     public class UtilityTests
     {
         [Fact]
+        //[InlineData("", "")]
         public void Can_EncryptPassword()
         {
             //Arrange
