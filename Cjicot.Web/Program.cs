@@ -1,4 +1,8 @@
 using Cjicot.Persistence;
+using Cjicot.Persistence.Domain;
+using Cjicot.Persistence.Repository;
+using Cjicot.Presentation.IManager;
+using Cjicot.Presentation.Manager;
 using Cjicot.Presentation.Utility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -15,9 +19,10 @@ builder.Services.AddDbContext<CjcotContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CjiCotDb"));
 });
 
+DependenciesResolver.AddServiceDependencies(builder.Services);
+
 var app = builder.Build();
 
-DependenciesResolver.AddServiceDependencies(builder.Services);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

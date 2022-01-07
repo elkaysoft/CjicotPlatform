@@ -19,7 +19,7 @@ namespace Cjicot.Presentation.Utility
             services.AddScoped<IRepository<UserRole>, EntityRepository<UserRole>>();
             services.AddScoped<IRepository<Roles>, EntityRepository<Roles>>();
 
-            services.AddSingleton<IAccountManager, AccountManager>();
+            services.AddTransient<IAccountManager, AccountManager>();
         }
     }
 }
