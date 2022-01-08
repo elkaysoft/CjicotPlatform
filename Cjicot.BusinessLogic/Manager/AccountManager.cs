@@ -35,7 +35,6 @@ namespace Cjicot.Presentation.Manager
                     result.Id = loginObj.Id;
                     result.Username = loginObj.Username;
                     result.Email = loginObj.Email;
-                    result.IsLocked = loginObj.IsLocked;
                     result.FailedLoginCount = loginObj.FailedLoginCount;
                     result.MobileNumber = loginObj.MobileNumber;
                     result.IsLocked = loginObj.IsLocked;

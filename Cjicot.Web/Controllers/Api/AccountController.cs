@@ -16,6 +16,60 @@ namespace Cjicot.Web.Controllers.Api
         }
 
         [HttpPost]
+        public IActionResult Login(LoginDto request)
+        {
+            var result = new ApiResult
+            {
+                code = ResponseHub.RESPONSECODE01,
+                message = ResponseHub.RESPONSEMESSAGE01,
+            };
+
+            try
+            {
+                var validator = new LoginValidator();
+                var validationResult = validator.Validate(request);
+
+                if (validationResult.IsValid)
+                {
+                    var resp = _accountManager.AppLogin(request);
+                    if(resp.Username != null)
+                    {
+                        if (resp.IsActive)
+                        {
+                            if (!resp.IsLocked)
+                            {
+                                result.code = ResponseHub.RESPONSECODE00;
+                                result.message = ResponseHub.RESPONSEMESSAGE00;
+                            }
+                            else
+                            {
+                                result.code = ResponseHub.RESPONSECODE02;
+                                result.message = "Your account has been locked, kindly reset your password";
+                            }
+                        }
+                        else
+                        {
+                            result.code = ResponseHub.RESPONSECODE02;
+                            result.message = "Your account has been disabled, kindly contact the administrator";
+                        }
+                    }
+                    else
+                    {
+                        result.code = ResponseHub.RESPONSECODE02;
+                        result.message = "Invalid Username/Password";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                HandleError(ex, ResponseHub.RESPONSEMESSAGE99);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpPost]
         public IActionResult AuthorRegistration(RegistrationDto payload)
         {
             var result = new ApiResult

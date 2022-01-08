@@ -19,4 +19,13 @@ namespace Cjicot.Presentation.Utility
             RuleFor(p => p.MobileNumber).NotEmpty();
         }
     }
+
+    public class LoginValidator: AbstractValidator<LoginDto>
+    {
+        public LoginValidator()
+        {
+            RuleFor(p => p.Username).NotEmpty();
+            RuleFor(p => p.Password).NotEmpty();
+        }
+    }
 }

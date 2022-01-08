@@ -51,7 +51,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <label>Email Address</label>
-                                        <input name="dzEmail" type="email" required="" class="form-control">
+                                        <input name="dzEmail" type="email" id="username" required="" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <label>Your Password</label>
-                                        <input name="dzPassword" type="password" class="form-control" required="">
+                                        <input name="dzPassword" type="password" id="password" class="form-control" required="">
                                     </div>
                                 </div>
                             </div>
@@ -105,6 +105,9 @@
 
                 $('#btnLogin').click(function(e){
                     e.preventDefault();
+                    var $username = $('#username').val();
+                    var $password = $('#password').val();
+
 
 
                 });
