@@ -1,8 +1,5 @@
 using Cjicot.Persistence;
-using Cjicot.Persistence.Domain;
-using Cjicot.Persistence.Repository;
-using Cjicot.Presentation.IManager;
-using Cjicot.Presentation.Manager;
+using Cjicot.Presentation.DTO;
 using Cjicot.Presentation.Utility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +17,7 @@ builder.Services.AddDbContext<CjcotContext>(options =>
 });
 
 DependenciesResolver.AddServiceDependencies(builder.Services);
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("CjicotEndpoints"));
 
 var app = builder.Build();
 
@@ -30,11 +28,10 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+    app.UseHttpsRedirection();
 }
 
 
-
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();

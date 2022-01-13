@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cjicot.Presentation.DTO
 {
-    public class CjicotEndpoints
+    public class AppSettings
     {
         public string AppBaseUrl { get; set; }
     }

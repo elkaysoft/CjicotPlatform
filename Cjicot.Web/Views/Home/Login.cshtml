@@ -1,9 +1,5 @@
-﻿@using Microsoft.Extensions.Options
-@inject IOptions<Cjicot.Presentation.DTO.CjicotEndpoints> configuration
-
-@{
+﻿@{
     Layout = null;
-    var appBaseUrl = configuration.Value.AppBaseUrl;
 }
 
 <!DOCTYPE html>
@@ -31,6 +27,7 @@
     <!-- STYLESHEETS ============================================= -->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <link class="skin" rel="stylesheet" type="text/css" href="/assets/css/color/color-1.css">
+    <link rel="stylesheet" type="text/css" href="/css/toastr.min.css">
 </head>
 <body id="bg">
     <div class="page-wraper">
@@ -74,6 +71,8 @@
                             </div>
                             <div class="col-lg-12 m-b30">
                                 <button name="submit" type="submit" value="Submit" id="btnLogin" class="btn button-md">Login</button>
+                                @* <div class="alert alert-danger" role="alert" id="dvErrorMessage" style="margin-top:10px"> something                               
+                                 </div>*@
                             </div>
                         </div>
                     </form>
@@ -96,25 +95,31 @@
     <script src="/assets/vendors/owl-carousel/owl.carousel.js"></script>
     <script src="/assets/js/functions.js"></script>
     <script src="/assets/js/contact.js"></script>
-    
-    @section scripts
-    {
-        <script>
-            $(document).ready(function(){
-                var appBaseul = "";
+
+    <script src="/lib/toastr.min.js"></script>
+    <script src="/js/general.js"></script>
+    <script src="/js/authentication.js"></script>
+    <script>
+            $(document).ready(function(e){
+                var $loginUrl = "/AccountApi/Login";
 
                 $('#btnLogin').click(function(e){
                     e.preventDefault();
                     var $username = $('#username').val();
-                    var $password = $('#password').val();
+                    var $password = $('#password').val();                    
+                    var $loginButtonCtl = $('#btnLogin');
 
+                    if($username == '' || $password == ''){
+                         toastr.error('Invalid username/password');
+                         return;
+                    }
 
+                    Login($username, $password, $loginUrl, $loginButtonCtl);                        
 
                 });
 
             });
         </script>
-    }
 </body>
 
 </html>

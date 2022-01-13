@@ -1,4 +1,4 @@
-﻿function Login(username, password) {
+﻿function Login(username, password, loginUrl, myButton) {
     $.ajax({
         type: 'post',
         beforeSend: function () {
@@ -8,43 +8,26 @@
         url: loginUrl,
         contentType: 'application/json; charset=UTF-8',
         data: JSON.stringify({ "UserName": username, "Password": password }),
-        success: function (response) {
-            console.dir(response);
-
-            if (response !== null) {
-                if (response.responseCode == '00') {
-                    $('#dvErrorMessage').attr('hidden', 'hidden');
-                    localStorage.setItem('duid', username);
+        success: function (response, textStatus, xhr) {
+            console.log(xhr.status);
+            if (response !== null) {                
+                if (response.code == '00') {
+                    //localStorage.setItem('duid', username);
                     RedirectToDashboard(redirectUrl);
-                }
-                else if (response.responseCode == '06') {
-                    $('#dvErrorMessage').attr('hidden', 'hidden');
-                    toastr.error('Invalid Email/Password');
-                }
-                else if (response.responseCode == '02') {
-                    $('#dvErrorMessage').attr('hidden', 'hidden');
-                    toastr.error('Sorry! Your email has not been provisioned for this platform');
-                }
-                else if (response.responseCode == '05') {
-                    $('#dvErrorMessage').removeAttr('hidden');
+                    toastr.success('Successful');
                 }
                 else {
-                    $('#dvErrorMessage').attr('hidden', 'hidden');
-                    toastr.error(response.responseMessage);
+                    //$('#dvErrorMessage').removeAttr('hidden');
+                    toastr.error(response.message);                    
+                    //$('#dvErrorMessage').text(response.message);
                 }
-            }
-            else {
-                $('#dvErrorMessage').attr('hidden', 'hidden');
-                toastr.error('Oooops! An error occured while processing your request');
             }
 
         },
         error: function (err) {
-            console.log(err);
-            $('#dvErrorMessage').attr('hidden', 'hidden');
-            toastr.error('Error Occured while logging in');
+            toastr.error(err.responseJSON.message);
         },
-        complete: function () {
+        complete: function (xhr, textStatus) {
             $(myButton).text('Login');
             $(myButton).removeAttr('disabled');
         }
@@ -52,6 +35,34 @@
 };
 
 
-function RedirectFunction(appBaseUrl) {
-    window.location.href = appBaseUrl;
-};
+
+function registerAuthor(apiUrl, fullName, email, mobile, username, password, myButton) {
+    $.ajax({
+        type: 'post',
+        beforeSend: function () {
+            $(myButton).text('Processing...');
+            $(myButton).attr('disabled', 'disabled')
+        },
+        url: loginUrl,
+        contentType: 'application/json; charset=UTF-8',
+        data: JSON.stringify({
+            "FullName": fullName, "Email": email,
+            "MobileNumber": mobile, "Username": username,
+            "Password": password
+        }),
+        success: function (response, textStatus, xhr) {            
+            if (response !== null) {
+                if (response.code == '00') {
+                    toastr.success('Account successfully created, kindly proceed to Login');
+                }
+            }
+        },
+        error: function (err) {
+            toastr.error(err.responseJSON.message);
+        },
+        complete: function (xhr, textStatus) {
+            $(myButton).text('Login');
+            $(myButton).removeAttr('disabled');
+        }
+    });
+}

@@ -6,17 +6,17 @@ using System;
 
 namespace Cjicot.Web.Controllers.Api
 {
-    public class AccountController : BaseApiController
+    public class AccountApiController : BaseApiController
     {
         private readonly IAccountManager _accountManager;
 
-        public AccountController(IAccountManager accountManager)
+        public AccountApiController(IAccountManager accountManager)
         {
             _accountManager = accountManager;
         }
 
         [HttpPost]
-        public IActionResult Login(LoginDto request)
+        public IActionResult Login([FromBody]LoginDto request)
         {
             var result = new ApiResult
             {
@@ -40,23 +40,27 @@ namespace Cjicot.Web.Controllers.Api
                             {
                                 result.code = ResponseHub.RESPONSECODE00;
                                 result.message = ResponseHub.RESPONSEMESSAGE00;
+                                return Ok(result);
                             }
                             else
                             {
                                 result.code = ResponseHub.RESPONSECODE02;
                                 result.message = "Your account has been locked, kindly reset your password";
+                                return BadRequest(result);
                             }
                         }
                         else
                         {
                             result.code = ResponseHub.RESPONSECODE02;
                             result.message = "Your account has been disabled, kindly contact the administrator";
+                            return BadRequest();
                         }
                     }
                     else
                     {
                         result.code = ResponseHub.RESPONSECODE02;
                         result.message = "Invalid Username/Password";
+                        return BadRequest(result);
                     }
                 }
             }
