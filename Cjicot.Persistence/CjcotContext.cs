@@ -22,6 +22,8 @@ namespace Cjicot.Persistence
         public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<LoginHistory> LoginHistories { get; set; }
+        public virtual DbSet<JournalCategory> JournalCategories { get; set; }
 
 
 

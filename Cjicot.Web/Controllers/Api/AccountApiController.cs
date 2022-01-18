@@ -18,7 +18,7 @@ namespace Cjicot.Web.Controllers.Api
         [HttpPost]
         public IActionResult Login([FromBody]LoginDto request)
         {
-            var result = new ApiResult
+            var result = new ApiResult<AccountDto>
             {
                 code = ResponseHub.RESPONSECODE01,
                 message = ResponseHub.RESPONSEMESSAGE01,
@@ -40,6 +40,8 @@ namespace Cjicot.Web.Controllers.Api
                             {
                                 result.code = ResponseHub.RESPONSECODE00;
                                 result.message = ResponseHub.RESPONSEMESSAGE00;
+                                result.data = resp;
+                                _accountManager.SetLoginHistory(request.Username, "Successfully logged in", true, "");
                                 return Ok(result);
                             }
                             else
@@ -60,6 +62,7 @@ namespace Cjicot.Web.Controllers.Api
                     {
                         result.code = ResponseHub.RESPONSECODE02;
                         result.message = "Invalid Username/Password";
+                        _accountManager.SetLoginHistory(request.Username, "Invalid Username/Password", false, "");
                         return BadRequest(result);
                     }
                 }
@@ -74,7 +77,7 @@ namespace Cjicot.Web.Controllers.Api
         }
 
         [HttpPost]
-        public IActionResult AuthorRegistration(RegistrationDto payload)
+        public IActionResult AuthorRegistration([FromBody]RegistrationDto payload)
         {
             var result = new ApiResult
             {

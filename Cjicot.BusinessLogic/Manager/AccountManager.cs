@@ -14,10 +14,12 @@ namespace Cjicot.Presentation.Manager
     public class AccountManager : IAccountManager
     {
         private readonly IRepository<UserLogin> _loginRepository;
+        private readonly IRepository<LoginHistory> _historyRepository;
 
-        public AccountManager(IRepository<UserLogin> loginRepository)
+        public AccountManager(IRepository<UserLogin> loginRepository, IRepository<LoginHistory> historyRepository)
         {
             _loginRepository = loginRepository;
+            _historyRepository = historyRepository;
         }
              
         public AccountDto AppLogin(LoginDto login)
@@ -35,11 +37,11 @@ namespace Cjicot.Presentation.Manager
                     result.Id = loginObj.Id;
                     result.Username = loginObj.Username;
                     result.Email = loginObj.Email;
-                    result.FailedLoginCount = loginObj.FailedLoginCount;
                     result.MobileNumber = loginObj.MobileNumber;
                     result.IsLocked = loginObj.IsLocked;
                     result.IsActive = loginObj.IsActive;
                     result.FullName = loginObj.FullName;
+                    result.AppUserId = loginObj.AppUserId;
                 }
             }
             catch (Exception ex)
@@ -58,11 +60,10 @@ namespace Cjicot.Presentation.Manager
                 DateCreated = DateTime.Now,
                 IsActive = true,
                 Email = registration.Email,
-                FailedLoginCount = 0,
                 MobileNumber = registration.MobileNumber,
                 FullName = registration.FullName,
                 IsLocked = false,
-                Password = registration.Password,
+                Password = helper.EncryptPassword(registration.Password),
                 Username = registration.Username                               
             };
 
@@ -83,6 +84,39 @@ namespace Cjicot.Presentation.Manager
             }
 
             return result;
+        }
+
+        public void SetLoginHistory(string username, string message, bool status, string ipAddress)
+        {
+            var loginObj = new LoginHistory
+            {
+                Username = username,
+                Message = message,
+                IsSuccessful = status,
+                IpAddress = ipAddress,
+                InitiatedOn = DateTime.Now
+            };
+
+            _historyRepository.Insert(loginObj);
+        }
+
+        private void InitProfileLockout(string username)
+        {
+            var resp = _historyRepository.GetFirstOrDefault(x => x.Username == username);
+            if(resp != null)
+            {
+
+            }
+        }
+
+        public void SetFailedLoginCount(string username)
+        {
+            //var regObj = _loginRepository.GetFirstOrDefault(x => x.Username == username);
+            //if (regObj != null)
+            //{
+            //    regObj.FailedLoginCount += 1;
+            //    _loginRepository.Update(regObj);
+            //}
         }
 
     }

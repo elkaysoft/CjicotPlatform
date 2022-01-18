@@ -38,6 +38,7 @@ namespace Cjicot.IntegrationTests
                     }
                     catch(Exception ex)
                     {
+                        ex.ToString();
                         throw;
                     }
                 }

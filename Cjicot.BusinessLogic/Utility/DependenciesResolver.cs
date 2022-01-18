@@ -18,6 +18,7 @@ namespace Cjicot.Presentation.Utility
             services.AddScoped<IRepository<UserLogin>, EntityRepository<UserLogin>>();
             services.AddScoped<IRepository<UserRole>, EntityRepository<UserRole>>();
             services.AddScoped<IRepository<Roles>, EntityRepository<Roles>>();
+            services.AddScoped<IRepository<LoginHistory>, EntityRepository<LoginHistory>>();
 
             services.AddTransient<IAccountManager, AccountManager>();
         }

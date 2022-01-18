@@ -18,12 +18,11 @@ namespace Cjicot.Persistence.Domain
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }        
-        public bool IsLocked { get; set; }
-        public int FailedLoginCount { get; set; }
+        public bool IsLocked { get; set; }        
+        public DateTime LastLoginDate { get; set; }
         public DateTime DateCreated { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
-
         public UserRole UserRole { get; set; }
 
     }
