@@ -70,6 +70,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Gender</label>
+                                        <select class="form-control" id="drpGender">
+                                            <option selected>-Choose Gender-</option>
+                                            <option>MALE</option>
+                                            <option>FEMALE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                              <div class="col-lg-12">
                                 <div class="form-group">
                                     <div class="input-group">
@@ -134,9 +146,10 @@
                 var $mobile = $('#mobile').val();
                 var $usernmae = $('#username').val();
                 var $password = $('#password').val();
+                var $gender = $('#drpGender option:selected').text();
                 var $btnRegister = $('#btnSignUp');
 
-                registerAuthor($uploadUrl, $fullName, $email, $mobile, $usernmae, $password, $btnRegister);
+                registerAuthor($uploadUrl, $fullName, $email, $mobile, $usernmae, $password, $gender, $btnRegister);
             });
 
         });

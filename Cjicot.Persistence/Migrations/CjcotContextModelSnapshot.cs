@@ -81,6 +81,44 @@ namespace Cjicot.Persistence.Migrations
                     b.ToTable("LoginHistories");
                 });
 
+            modelBuilder.Entity("Cjicot.Persistence.Domain.Profile", b =>
+                {
+                    b.Property<Guid>("ProfileId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MobileNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Province")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProfileId");
+
+                    b.ToTable("Profiles");
+                });
+
             modelBuilder.Entity("Cjicot.Persistence.Domain.Roles", b =>
                 {
                     b.Property<long>("Id")
@@ -117,17 +155,8 @@ namespace Cjicot.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AppUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -138,9 +167,6 @@ namespace Cjicot.Persistence.Migrations
                     b.Property<DateTime>("LastLoginDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MobileNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -150,10 +176,16 @@ namespace Cjicot.Persistence.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("ProfileId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProfileId")
+                        .IsUnique();
 
                     b.ToTable("UserLogins");
                 });
@@ -186,6 +218,17 @@ namespace Cjicot.Persistence.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("Cjicot.Persistence.Domain.UserLogin", b =>
+                {
+                    b.HasOne("Cjicot.Persistence.Domain.Profile", "Profile")
+                        .WithOne("UserLogin")
+                        .HasForeignKey("Cjicot.Persistence.Domain.UserLogin", "ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Profile");
+                });
+
             modelBuilder.Entity("Cjicot.Persistence.Domain.UserRole", b =>
                 {
                     b.HasOne("Cjicot.Persistence.Domain.UserLogin", "UserLogin")
@@ -194,6 +237,11 @@ namespace Cjicot.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("UserLogin");
+                });
+
+            modelBuilder.Entity("Cjicot.Persistence.Domain.Profile", b =>
+                {
                     b.Navigation("UserLogin");
                 });
 

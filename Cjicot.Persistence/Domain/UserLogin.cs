@@ -11,10 +11,7 @@ namespace Cjicot.Persistence.Domain
     {        
         [Key]
         public Int64 Id { get; set; }
-        public Guid AppUserId { get; set; }
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string MobileNumber { get; set; }
+        public Guid ProfileId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }        
@@ -24,6 +21,7 @@ namespace Cjicot.Persistence.Domain
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public UserRole UserRole { get; set; }
+        public Profile Profile { get; set; }
 
     }
 }

@@ -24,6 +24,7 @@ namespace Cjicot.Persistence
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<LoginHistory> LoginHistories { get; set; }
         public virtual DbSet<JournalCategory> JournalCategories { get; set; }
+        public virtual DbSet<Profile> Profiles { get; set; }
 
 
 
@@ -33,6 +34,11 @@ namespace Cjicot.Persistence
                 .HasOne(b => b.UserRole)
                 .WithOne(i => i.UserLogin)
                 .HasForeignKey<UserRole>(b => b.UserId);
+
+            modelBuilder.Entity<Profile>()
+                .HasOne(b => b.UserLogin)
+                .WithOne(i => i.Profile)
+                .HasForeignKey<UserLogin>(b => b.ProfileId);
         }
 
     }

@@ -11,7 +11,7 @@ namespace Cjicot.Presentation.IManager
     {
         AccountDto AppLogin(LoginDto login);
         bool IsUserExists(string username);
-        int RegisterAuthor(RegistrationDto registration);
+        int CreateProfile(RegistrationDto registration);
         void SetLoginHistory(string username, string message, bool status, string ipAddress);
     }
 }

@@ -100,7 +100,7 @@ namespace Cjicot.Web.Controllers.Api
                     }
                     else
                     {
-                        var uploadResp = _accountManager.RegisterAuthor(payload);
+                        var uploadResp = _accountManager.CreateProfile(payload);
                         if(uploadResp > 0)
                         {
                             result.code = ResponseHub.RESPONSECODE00;

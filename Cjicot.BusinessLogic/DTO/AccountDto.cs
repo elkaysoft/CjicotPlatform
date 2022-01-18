@@ -23,13 +23,20 @@ namespace Cjicot.Presentation.DTO
 
     public class RegistrationDto
     {
+        public RegistrationDto()
+        {
+            Country = "Nigeria";
+        }
+
         public Int64 Id { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
         public string MobileNumber { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public int roleId { get; set; }
+        public string Gender { get; set; }
+        public string Country { get; set; }
+        public string Province { get; set; }
 
     }
 

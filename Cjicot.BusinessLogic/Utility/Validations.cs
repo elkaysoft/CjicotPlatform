@@ -17,6 +17,8 @@ namespace Cjicot.Presentation.Utility
             RuleFor(p => p.Password).NotEmpty();
             RuleFor(p => p.FullName).NotEmpty();
             RuleFor(p => p.MobileNumber).NotEmpty();
+            RuleFor(p => p.Country).NotEmpty();
+            RuleFor(p => p.Gender).NotEmpty();
         }
     }
 

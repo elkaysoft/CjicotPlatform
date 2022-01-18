@@ -34,19 +34,19 @@
 
 
 
-function registerAuthor(apiUrl, fullName, email, mobile, username, password, myButton) {
+function registerAuthor(apiUrl, fullName, email, mobile, username, password, gender, myButton) {
     $.ajax({
         type: 'post',
         beforeSend: function () {
             $(myButton).text('Processing...');
             $(myButton).attr('disabled', 'disabled')
-        },
+        }, 
         url: apiUrl,
         contentType: 'application/json; charset=UTF-8',
         data: JSON.stringify({
             "FullName": fullName, "Email": email,
             "MobileNumber": mobile, "Username": username,
-            "Password": password
+            "Password": password, "Gender": gender
         }),
         success: function (response, textStatus, xhr) {            
             if (response !== null) {

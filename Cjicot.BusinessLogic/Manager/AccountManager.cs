@@ -15,13 +15,15 @@ namespace Cjicot.Presentation.Manager
     {
         private readonly IRepository<UserLogin> _loginRepository;
         private readonly IRepository<LoginHistory> _historyRepository;
+        private readonly IRepository<Profile> _profileRepository;
 
-        public AccountManager(IRepository<UserLogin> loginRepository, IRepository<LoginHistory> historyRepository)
+        public AccountManager(IRepository<UserLogin> loginRepository, IRepository<LoginHistory> historyRepository, IRepository<Profile> profileRepository)
         {
             _loginRepository = loginRepository;
             _historyRepository = historyRepository;
+            _profileRepository = profileRepository;
         }
-             
+
         public AccountDto AppLogin(LoginDto login)
         {
             var result = new AccountDto();
@@ -36,12 +38,9 @@ namespace Cjicot.Presentation.Manager
                 {
                     result.Id = loginObj.Id;
                     result.Username = loginObj.Username;
-                    result.Email = loginObj.Email;
-                    result.MobileNumber = loginObj.MobileNumber;
                     result.IsLocked = loginObj.IsLocked;
                     result.IsActive = loginObj.IsActive;
-                    result.FullName = loginObj.FullName;
-                    result.AppUserId = loginObj.AppUserId;
+                    result.AppUserId = loginObj.ProfileId;
                 }
             }
             catch (Exception ex)
@@ -52,23 +51,48 @@ namespace Cjicot.Presentation.Manager
             return result;
         }
 
-        public int RegisterAuthor(RegistrationDto registration)
+        public int CreateProfile(RegistrationDto registration)
         {
-            var registerationModel = new UserLogin
+            var profileId = Guid.NewGuid();
+            int accountCreated = 0;
+
+            var profileObj = new Profile
             {
-                AppUserId = Guid.NewGuid(),
-                DateCreated = DateTime.Now,
-                IsActive = true,
+                Country = registration.Country,
+                CreatedOn = DateTime.Now,
                 Email = registration.Email,
-                MobileNumber = registration.MobileNumber,
                 FullName = registration.FullName,
-                IsLocked = false,
-                Password = helper.EncryptPassword(registration.Password),
-                Username = registration.Username                               
+                IsDeleted = false,
+                Gender = registration.Gender,
+                MobileNumber = registration.MobileNumber,
+                ProfileId = profileId,
+                Province = registration.Province                
             };
 
-            return _loginRepository.Insert(registerationModel);
+            accountCreated =  _profileRepository.Insert(profileObj);   
+            if(accountCreated > 0)
+            {
+                AddLoginDetail(registration.Username, registration.Password, profileId);
+            }
+
+            return accountCreated;
         }
+
+        private void AddLoginDetail(string username, string password, Guid profileId)
+        {
+            var loginObj = new UserLogin
+            {
+                ProfileId = profileId,
+                DateCreated = DateTime.Now,
+                IsActive = true,
+                IsLocked = false,
+                Password = helper.EncryptPassword(password),
+                Username = username
+            };
+
+            _loginRepository.Insert(loginObj);
+        }
+
 
         public bool IsUserExists(string username)
         {
