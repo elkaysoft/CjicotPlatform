@@ -30,4 +30,18 @@ namespace Cjicot.Presentation.Utility
             RuleFor(p => p.Password).NotEmpty();
         }
     }
+
+    public class JournalUploadValidator: AbstractValidator<UploadJournalsDto>
+    {
+        public JournalUploadValidator()
+        {
+            RuleFor(p => p.Keywords).NotEmpty();
+            RuleFor(p => p.ProfileId).NotEmpty();
+            RuleFor(p => p.Title).NotEmpty();
+            RuleFor(p => p.Abstract).NotEmpty();
+            RuleFor(p => p.JournalType).NotEmpty();
+            RuleFor(p => p.documents).NotNull();
+            RuleFor(p => p.manuscriptAuthors).NotNull();
+        }
+    }
 }

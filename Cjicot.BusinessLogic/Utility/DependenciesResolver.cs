@@ -21,8 +21,14 @@ namespace Cjicot.Presentation.Utility
             services.AddScoped<IRepository<LoginHistory>, EntityRepository<LoginHistory>>();
             services.AddScoped<IRepository<Profile>, EntityRepository<Profile>>();
             services.AddScoped<IRepository<JournalCategory>, EntityRepository<JournalCategory>>();
+            services.AddScoped<IRepository<JournalAuthors>, EntityRepository<JournalAuthors>>();
+            services.AddScoped<IRepository<JournalDocuments>, EntityRepository<JournalDocuments>>();   
+            services.AddScoped<IRepository<Journals>, EntityRepository<Journals>>();
+            services.AddScoped<IRepository<PublishedJournal>, EntityRepository<PublishedJournal>>();
 
             services.AddTransient<IAccountManager, AccountManager>();
+            services.AddTransient<IAppSettingsManager, AppSettingsManager>();
+            services.AddTransient<IJournalManager, JournalManager>();
         }
     }
 }

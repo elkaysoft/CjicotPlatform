@@ -13,5 +13,6 @@ namespace Cjicot.Presentation.IManager
         bool IsUserExists(string username);
         int CreateProfile(RegistrationDto registration);
         void SetLoginHistory(string username, string message, bool status, string ipAddress);
+        bool IsProfileIdValid(Guid profileId);
     }
 }

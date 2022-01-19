@@ -4,6 +4,7 @@ using Cjicot.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cjicot.Persistence.Migrations
 {
     [DbContext(typeof(CjcotContext))]
-    partial class CjcotContextModelSnapshot : ModelSnapshot
+    [Migration("20220118210832_JournalsModelInclusion")]
+    partial class JournalsModelInclusion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,23 +141,8 @@ namespace Cjicot.Persistence.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateEdited")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateReviewed")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("EditorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("EditorStatus")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
-
-                    b.Property<int>("IsPublished")
-                        .HasColumnType("int");
 
                     b.Property<string>("JournalType")
                         .HasColumnType("nvarchar(max)");
@@ -165,12 +152,6 @@ namespace Cjicot.Persistence.Migrations
 
                     b.Property<Guid>("ProfileId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ReviewerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ReviewerStatus")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -244,34 +225,6 @@ namespace Cjicot.Persistence.Migrations
                     b.HasKey("ProfileId");
 
                     b.ToTable("Profiles");
-                });
-
-            modelBuilder.Entity("Cjicot.Persistence.Domain.PublishedJournal", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<Guid>("AuthorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DatePublished")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ISBN")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("JournalId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Publisher")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PublishedJournals");
                 });
 
             modelBuilder.Entity("Cjicot.Persistence.Domain.Roles", b =>

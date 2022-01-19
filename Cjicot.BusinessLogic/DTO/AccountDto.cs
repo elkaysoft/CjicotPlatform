@@ -26,6 +26,7 @@ namespace Cjicot.Presentation.DTO
         public RegistrationDto()
         {
             Country = "Nigeria";
+            Province = "Abeokuta";
         }
 
         public Int64 Id { get; set; }

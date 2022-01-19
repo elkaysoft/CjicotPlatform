@@ -110,6 +110,19 @@ namespace Cjicot.Presentation.Manager
             return result;
         }
 
+        public bool IsProfileIdValid(Guid profileId)
+        {
+            bool result = false;
+
+            var profileObj = _profileRepository.GetFirstOrDefault(x => x.ProfileId.Equals(profileId));
+            if (profileObj != null)
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
         public void SetLoginHistory(string username, string message, bool status, string ipAddress)
         {
             var loginObj = new LoginHistory

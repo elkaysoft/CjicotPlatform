@@ -38,10 +38,6 @@
             </div>
         <div class="col-md-6">
             <select class="form-control" name="journalType" id="journalType">
-                <option selected>-Choose-</option>
-                <option>Artificial Intelligence</option>
-                <option>Big Data</option>
-                <option>Cloud Technology and Infrastructure</option>
             </select>
         </div>
       </div>
@@ -204,6 +200,9 @@
 {
     <script>
         $(document).ready(function(e){
+
+            let $journalCatUrl = '/SettingsApi/GetJournalCategories';
+
             $('#btnShowAuthor').click(function(e){
                 e.preventDefault();
                 $('#authorDetails').removeAttr('hidden');
@@ -228,6 +227,7 @@
                 $('#DocumentUploads').attr('hidden', 'hidden');
             });
 
+            GetJournalCategories($journalCatUrl);
 
         });
     </script>
