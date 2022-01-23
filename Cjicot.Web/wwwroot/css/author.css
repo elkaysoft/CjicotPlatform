@@ -45,3 +45,6 @@
 #authorWrapper {
     margin-bottom: 50px;
 }
+/*select.bs-select-hidden, select.selectpicker{
+    display: inline !important;
+}*/

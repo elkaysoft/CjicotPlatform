@@ -17,15 +17,15 @@
  <ul class="nav nav-tabs" id="navigation">
       <li class="nav-item">
           <span class="badge bg-success">1</span>
-        <a class="nav-link active" aria-current="page" href="#">Manuscript Info</a>
+        <a class="nav-link active" aria-current="page" id="lnkManuscript" href="#">Manuscript Info</a>
       </li>
       <li class="nav-item">
           <span class="badge bg-secondary">2</span>
-        <a class="nav-link" href="#">Author Details</a>
+        <a class="nav-link" href="#" id="lnkAuth">Author Details</a>
       </li>
       <li class="nav-item">
           <span class="badge bg-secondary">3</span>
-        <a class="nav-link" href="#">Upload Files</a>
+        <a class="nav-link" href="#" id="lnkFiles">Upload Files</a>
       </li>
 </ul>
 
@@ -37,7 +37,7 @@
                 <label for="journalType">Journal Type</label>
             </div>
         <div class="col-md-6">
-            <select class="form-control" name="journalType" id="journalType">
+            <select name="journalType" id="journalType">
             </select>
         </div>
       </div>
@@ -85,12 +85,12 @@
     <h4 class="heady">Step 2: Author(s) Details</h4>
     <p>Kindly provide the names, titles, and affliations of all authors of this manuscript, in the order
         that they appear on the manuscript. You must be one of authors of the manuscript</p>
-
-    <div class="row" style="border-bottom: 1px solid #e6e4e4">
+    <div id="hid">
+    <div class="row jb">                
         <div class="col-md-1">
             <label>Title</label>
             <div class="form-group">
-                <select class="form-control">
+                <select class="form-control drpSalutations">
                     <option>Dr</option>
                     <option>Miss</option>
                     <option>Mr</option>
@@ -125,18 +125,24 @@
          <div class="col-md-3">
         <label for="email">Country</label>
         <div class="form-group">
-              <select class="form-control">
+              <select class="form-control" style="display: inline !important;">
                     <option>-Choose-</option>
                     <option>Nigeria</option>
                     <option>United Kingdom</option>
                     <option>United States of America</option>
                 </select>
         </div>
-        </div>
+        </div>      
     </div>
-    <a href="#">Add more author</a>
+    </div>
+
+    <div style="border-bottom: 1px solid #e6e4e4"></div>
+
+
+    <a href="#" id="btnAddMore">Add more author</a>
     
     <div id="authorWrapper">
+
     </div>
 
     <div class="row">
@@ -154,12 +160,13 @@
 <!--Documents Upload Div Starts here-->
 <div id="DocumentUploads" hidden> 
     <h4 class="heady">Step 3: Upload Files</h4>
+
       <div class="row">
             <div class="col-md-2">
                 <label for="coverLetter">Cover Letter</label>
             </div>
         <div class="col-md-6">
-            <input type="file" name="coverLetter"/>
+            <input type="file" name="coverLetter" id="fpCoverLetter"/>
         </div>
       </div>
       <br />
@@ -168,7 +175,7 @@
                 <label for="manuscriptFile">Manuscript File</label>
             </div>
         <div class="col-md-6">
-            <input type="file" name="manuscriptFile"/>
+            <input type="file" name="manuscriptFile" id="fpManuscript"/>
         </div>
       </div>
       <br />
@@ -177,7 +184,7 @@
                 <label for="supplementaryFile">Supplementary File</label>
             </div>
         <div class="col-md-6">
-            <input type="file" name="supplementaryFile"/>
+            <input type="file" name="supplementaryFile" id="fpSupplementary"/>
         </div>
       </div>
       <br />
@@ -189,7 +196,6 @@
            <button class="btn btn-success" id="btnSubmit">Submit</button>
       </div>
     </div>   
-
 </div>
 <!--Document Upload Div Ends here-->
 
@@ -202,32 +208,54 @@
         $(document).ready(function(e){
 
             let $journalCatUrl = '/SettingsApi/GetJournalCategories';
+            GetJournalCategories($journalCatUrl);
 
             $('#btnShowAuthor').click(function(e){
                 e.preventDefault();
                 $('#authorDetails').removeAttr('hidden');
                 $('#manuscriptInfo').attr('hidden', 'hidden');
+                $('a').removeClass('active');
+                $('#lnkAuth').addClass('active');
             });
 
             $('#btnShowManuscript').click(function(e){
                 e.preventDefault();
                 $('#authorDetails').attr('hidden', 'hidden');
                 $('#manuscriptInfo').removeAttr('hidden');
+                $('a').removeClass('active');
+                $('#lnkManuscript').addClass('active');
             });
 
             $('#btnShowDocument').click(function(e){
                 e.preventDefault();
                 $('#authorDetails').attr('hidden', 'hidden');
                 $('#DocumentUploads').removeAttr('hidden');
+
+                $('a').removeClass('active');
+                $('#lnkFiles').addClass('active');
             });
 
             $('#btnPrevAuthor').click(function(e){
                 e.preventDefault();
                 $('#authorDetails').removeAttr('hidden');
                 $('#DocumentUploads').attr('hidden', 'hidden');
+
+                $('a').removeClass('active');
+                $('#lnkAuth').addClass('active');
             });
 
-            GetJournalCategories($journalCatUrl);
+
+            $('#btnAddMore').click(function(e){
+                e.preventDefault();
+               var ss = $('#hid .jb').clone().appendTo('#authorWrapper');
+            });
+
+            $('#btnSubmit').click(function(e){
+                e.preventDefault();
+
+                UploadJournalRecord();
+            });             
+
 
         });
     </script>
